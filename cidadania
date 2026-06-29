@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidadania Digital & IA</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Cidadania Digital & IA</h1>
+        <p>O Impacto das Deepfakes e da Desinformação na Sociedade</p>
+        <button id="toggle-dark-mode">Alternar Modo Escuro</button>
+    </header>
+
+    <main>
+        <section class="info-section">
+            <h2>O que são Deepfakes e Fake News?</h2>
+            <p>Deepfakes são vídeos, áudios ou imagens manipulados por Inteligência Artificial para fazer pessoas parecerem dizer ou fazer coisas que nunca fizeram. Quando usados para espalhar mentiras de forma automatizada, tornam-se ferramentas perigosas de desinformação.</p>
+            
+            <h3>Como identificar?</h3>
+            <ul>
+                <li>Fique atento a piscadas não naturais ou falta delas.</li>
+                <li>Observe falhas nas bordas do rosto ou iluminação estranha.</li>
+                <li>Sempre verifique a fonte da informação antes de compartilhar.</li>
+            </ul>
+        </section>
+
+        <section class="quiz-section">
+            <h2>Quiz: Você sabe identificar Fake News?</h2>
+            <form id="quiz-form">
+                <div class="question">
+                    <p>1. Se uma notícia bombástica chega pelo WhatsApp sem link de um portal confiável, o que você faz?</p>
+                    <label>
+                        <input type="radio" name="q1" value="errado" required> Compartilho imediatamente para alertar meus amigos.
+                    </label>
+                    <label>
+                        <input type="radio" name="q1" value="certo"> Pesquiso o título em um buscador para ver se agências de checagem confirmam.
+                    </label>
+                </div>
+                <button type="submit">Enviar Respostas</button>
+            </form>
+            <div id="quiz-result" class="hidden"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Desenvolvido para o componente de Educação Digital e IA</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+/* Variáveis de Cores para facilitar o Modo Escuro */
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --primary-color: #2563eb;
+    --card-bg: #ffffff;
+}
+
+.dark-theme {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --primary-color: #3b82f6;
+    --card-bg: #1e1e1e;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#toggle-dark-mode {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+section {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.question {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin: 0.5rem 0;
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#quiz-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    border-top: 1px solid #ccc;
+}
+
+/* Responsividade (Aparelhos Celulares) */
+@media (max-width: 600px) {
+    main {
+        margin: 1rem auto;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+}
+// Seleção de elementos do DOM
+const toggleButton = document.getElementById('toggle-dark-mode');
+const quizForm = document.getElementById('quiz-form');
+const quizResult = document.getElementById('quiz-result');
+
+// 1. Funcionalidade de Modo Escuro
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+});
+
+// 2. Validação e Feedback do Quiz
+quizForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    // Captura a opção selecionada
+    const answer = quizForm.elements['q1'].value;
+
+    // Exibe o resultado baseado na resposta
+    quizResult.classList.remove('hidden');
+
+    if (answer === 'certo') {
+        quizResult.style.backgroundColor = '#d1fae5';
+        quizResult.style.color = '#065f46';
+        quizResult.textContent = 'Parabéns! Você tem uma postura crítica e responsável na internet. Pesquisar antes de compartilhar combate as Fake News!';
+    } else {
+        quizResult.style.backgroundColor = '#fee2e2';
+        quizResult.style.color = '#991b1b';
+        quizResult.textContent = 'Atenção! Compartilhar informações sem checar ajuda a espalhar desinformação. Lembre-se sempre de buscar fontes confiáveis.';
+    }
+});
+/meu-projeto-cidadania
+│
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+└── README.md
+# Cidadania Digital e Inteligência Artificial
+
+## Objetivo do Projeto
+Este site foi desenvolvido como atividade de Recuperação Prática para conscientizar a comunidade escolar sobre os impactos das Deepfakes e das Fake News na nossa sociedade.
+
+## Ferramentas Utilizadas
+- HTML5, CSS3 e JavaScript Vanilla.
+- Inteligência Artificial para base de código e estrutura (Prompt: "Gere uma estrutura de site educativo sobre cidadania digital usando apenas HTML, CSS e JS, incluindo modo escuro e um quiz estruturado").
