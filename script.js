@@ -24,3 +24,4 @@ formQuiz.addEventListener('submit', (event) => {
         resultado.innerHTML = "<p style='color: red; font-weight: bold;'>Incorreto. Tente ler mais sobre como a IA manipula os pixels do vídeo.</p>";
     }
 });
+<script src="./js/script.js"></script>
